@@ -7,1509 +7,1181 @@
 <title>Тренажёр — ведение клиента</title>
 
 <style>
-
 body{
-font-family:Arial,sans-serif;
-max-width:920px;
-margin:auto;
-padding:22px;
-background:#f5f5f3;
-color:#171717;
-line-height:1.55
+  font-family:Arial,sans-serif;
+  max-width:920px;
+  margin:auto;
+  padding:22px;
+  background:#f5f5f3;
+  color:#171717;
+  line-height:1.55
 }
 
 .card{
-background:#fff;
-border:1px solid #ddd;
-border-radius:16px;
-padding:22px;
-margin:16px 0
+  background:#fff;
+  border:1px solid #ddd;
+  border-radius:16px;
+  padding:22px;
+  margin:16px 0
 }
 
-h1,h2,h3{
-margin-top:0
-}
+h1,h2,h3{margin-top:0}
 
-.muted{
-color:#666
-}
+.muted,.small{color:#666}
 
-.small{
-font-size:13px;
-color:#666
-}
-
-.tag{
-display:inline-block;
-padding:5px 9px;
-border-radius:99px;
-background:#eee;
-margin:3px;
-font-size:14px
-}
+.small{font-size:13px}
 
 button{
-padding:11px 17px;
-border:0;
-border-radius:10px;
-background:#222;
-color:#fff;
-font-weight:bold;
-cursor:pointer;
-margin:8px 6px 0 0;
-min-height:44px
+  padding:12px 18px;
+  border:0;
+  border-radius:10px;
+  background:#222;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+  margin:8px 6px 0 0;
+  min-height:44px
 }
 
 button.secondary{
-background:#fff;
-color:#222;
-border:1px solid #aaa
+  background:#fff;
+  color:#222;
+  border:1px solid #aaa
 }
 
 button:disabled{
-opacity:.45;
-cursor:not-allowed
+  opacity:.45;
+  cursor:not-allowed
+}
+
+input[type=text],
+input[type=password],
+textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #bbb;
+  border-radius:10px;
+  font:inherit;
+  box-sizing:border-box;
+  margin:6px 0 12px
 }
 
 textarea{
-width:100%;
-min-height:105px;
-padding:12px;
-border:1px solid #bbb;
-border-radius:10px;
-font:inherit;
-box-sizing:border-box
-}
-
-.answer{
-background:#f0f4ff;
-border-left:4px solid #4564d8;
-padding:12px;
-margin-top:12px;
-border-radius:7px
-}
-
-.ok{
-background:#eef8ee;
-border-left:4px solid #39833f;
-padding:12px;
-margin-top:12px;
-border-radius:7px
-}
-
-.bad{
-background:#fff3ed;
-border-left:4px solid #c55b32;
-padding:12px;
-margin-top:12px;
-border-radius:7px
-}
-
-.score{
-font-size:42px;
-font-weight:bold
-}
-
-.hidden{
-display:none
-}
-
-.quote{
-background:#f7f7f7;
-border-left:4px solid #aaa;
-padding:10px 14px;
-margin:10px 0
+  min-height:110px
 }
 
 .video{
-position:relative;
-width:100%;
-padding-top:56.25%;
-overflow:hidden;
-border-radius:12px;
-background:#111
+  position:relative;
+  width:100%;
+  padding-top:56.25%;
+  overflow:hidden;
+  border-radius:12px;
+  background:#111
 }
 
 .video iframe{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-border:0
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0
 }
 
 .option{
-display:block;
-border:1px solid #ddd;
-border-radius:12px;
-padding:12px;
-margin:10px 0;
-cursor:pointer;
-background:#fff
+  display:block;
+  border:1px solid #ddd;
+  border-radius:12px;
+  padding:13px;
+  margin:10px 0;
+  cursor:pointer;
+  background:#fff
 }
 
 .option:hover{
-background:#fafafa
+  background:#fafafa
 }
 
 .option input{
-margin-right:8px
+  margin-right:8px
+}
+
+.answer{
+  background:#f0f4ff;
+  border-left:4px solid #4564d8;
+  padding:14px;
+  margin-top:14px;
+  border-radius:7px
+}
+
+.ok{
+  background:#eef8ee;
+  border-left:4px solid #39833f;
+  padding:14px;
+  margin-top:14px;
+  border-radius:7px
+}
+
+.bad{
+  background:#fff3ed;
+  border-left:4px solid #c55b32;
+  padding:14px;
+  margin-top:14px;
+  border-radius:7px
+}
+
+.quote{
+  background:#f7f7f7;
+  border-left:4px solid #aaa;
+  padding:12px 14px;
+  margin:12px 0
 }
 
 .progress{
-height:8px;
-background:#e9e9e9;
-border-radius:99px;
-overflow:hidden
+  height:8px;
+  background:#e9e9e9;
+  border-radius:99px;
+  overflow:hidden
 }
 
 .progress>div{
-height:100%;
-background:#222;
-width:0
+  height:100%;
+  background:#222;
+  transition:.2s
+}
+
+.score{
+  font-size:46px;
+  font-weight:bold
+}
+
+.hidden{
+  display:none
 }
 
 .grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px
 }
 
 .metric{
-padding:12px;
-border:1px solid #ddd;
-border-radius:12px;
-background:#fafafa
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  background:#fafafa
 }
 
 @media(max-width:650px){
-
-.grid{
-grid-template-columns:1fr
+  body{padding:12px}
+  .grid{grid-template-columns:1fr}
 }
-
-}
-
 </style>
 </head>
-
 
 <body>
 
 <div id="app"></div>
 
-
 <script>
 
-const A=document.getElementById('app');
+/* =====================================================
+   НАСТРОЙКИ
+===================================================== */
 
-const KEY='training_attempt_v3';
+const SERVER =
+'https://script.google.com/macros/s/AKfycbzLbGYcgC4w3OBVyfGiMALYrXjuUbaCPpjvKga_ptdS2hf7nAXaU4daDr85x247T1E_/exec';
 
-let lessonStep=0;
+const VIDEO =
+'https://www.youtube.com/embed/vqOBYOjIYr0';
 
-let examState=null;
+const app = document.getElementById('app');
 
+let token = '';
+let managerName = '';
+let questions = [];
+let examAnswers = [];
+let examIndex = 0;
 
-/* =========================
-   ОБУЧАЮЩИЕ ЗАДАНИЯ
-========================= */
 
-const lessons=[
+/* =====================================================
+   JSONP
+   Google Apps Script вызывается через JSONP
+===================================================== */
 
-[
-'Проверка понимания',
+function api(action, params={}){
 
-'Клиент: «Мне нужно оформить документы для подачи за границу». Сформулируй реплику, которая проверяет, правильно ли ты понял ситуацию.',
+  return new Promise((resolve,reject)=>{
 
-'Например: «Правильно понимаю, документы нужны для подачи за границу?»',
+    const callbackName =
+      'cb_' + Date.now() + '_' +
+      Math.floor(Math.random()*100000);
 
-'Сначала синхронизируйся с клиентом и проверь исходные данные.'
-],
+    const script =
+      document.createElement('script');
 
-[
-'Получение реакции',
+    const query = new URLSearchParams();
 
-'Ты озвучил клиенту условия. Клиент молчит. Что скажешь?',
+    query.set('action', action);
+    query.set('callback', callbackName);
 
-'Например: «Как вам такой вариант?» или «Что скажете по условиям?»',
+    Object.keys(params).forEach(key=>{
+      query.set(key, params[key]);
+    });
 
-'После предложения обязательно получи реакцию клиента.'
-],
+    const timer = setTimeout(()=>{
+      cleanup();
+      reject(
+        new Error('Сервер не ответил')
+      );
+    },15000);
 
-[
-'Уточнение сомнения',
+    window[callbackName] = function(data){
+      clearTimeout(timer);
+      cleanup();
+      resolve(data);
+    };
 
-'Клиент: «Что-то мне не подходит». Что спросишь?',
+    function cleanup(){
+      delete window[callbackName];
+      script.remove();
+    }
 
-'Например: «Подскажите, пожалуйста, что именно вам не подходит?»',
+    script.onerror = function(){
+      clearTimeout(timer);
+      cleanup();
+      reject(
+        new Error('Ошибка соединения с сервером')
+      );
+    };
 
-'Расплывчатое сомнение нужно превратить в конкретную информацию.'
-],
+    script.src =
+      SERVER + '?' + query.toString();
 
-[
-'Поиск причины',
+    document.body.appendChild(script);
 
-'Клиент требует определённый вариант. Выясни, зачем он ему нужен.',
-
-'Например: «А подскажите, пожалуйста, для чего вам именно этот вариант?»',
-
-'Первоначальное требование не всегда равно реальной потребности.'
-],
-
-[
-'Перефразирование',
-
-'Клиент объяснил ситуацию длинно. Сформулируй короткое подтверждение понимания.',
-
-'Например: «Правильно понимаю, что…?»',
-
-'Перефразируй суть и проверь, правильно ли понял.'
-],
-
-[
-'Использование слов клиента',
-
-'Клиент: «Мне не срочно, главное — чтобы всё было правильно». Предложи решение на основе этого.',
-
-'Например: «Тогда можем предложить вариант с более длительным сроком, но без спешки. Такой вариант вам подходит?»',
-
-'Информация клиента должна влиять на следующее предложение.'
-],
-
-[
-'Альтернатива и выбор',
-
-'Есть вариант А — быстрее и дороже; вариант Б — дешевле и дольше. Как предложишь выбор?',
-
-'Например: «Есть два варианта: быстрее за X или дешевле за Y. Какой вам удобнее?»',
-
-'Не бросай клиента с вариантами; структурируй выбор.'
-],
-
-[
-'Помощь в выборе',
-
-'Клиент: «Я не знаю, какой выбрать». Что делаешь?',
-
-'Например: «А что для вас сейчас важнее — срок или стоимость?»',
-
-'Помоги клиенту определить критерий выбора.'
-],
-
-[
-'Фиксация договорённости',
-
-'Клиент: «Да, этот вариант мне подходит». Что делаешь дальше?',
-
-'Например: «Правильно понимаю, что оформляем по этим условиям?»',
-
-'Согласие нужно превратить в конкретную договорённость.'
-],
-
-[
-'Следующий шаг',
-
-'Договорённость достигнута. Что спрашиваешь дальше?',
-
-'Например: «Когда вам будет удобно подъехать?»',
-
-'После решения должен появиться конкретный следующий шаг.'
-],
-
-[
-'Предупреждение вопросов',
-
-'Клиент согласился приехать. Какие вещи стоит сообщить заранее?',
-
-'Например: куда подойти, что взять с собой, что произойдёт после приезда.',
-
-'Менеджер заранее снимает неопределённость.'
-]
-
-];
-
-
-/* =========================
-   ВОПРОСЫ ЗАЧЁТА
-========================= */
-
-const examPool=[
-
-{
-q:'Клиент: «Мне нужно оформить заказ, но я сам пока не понимаю, какой именно вариант нужен». Что лучше сделать первым?',
-
-o:[
-'Сразу назвать самый дорогой вариант.',
-'Спросить, что для клиента важно и для чего нужен результат.',
-'Сразу предложить скидку.',
-'Сказать: «Тогда подумайте и перезвоните».'
-],
-
-a:1,
-
-e:'Сначала нужно понять ситуацию и критерии выбора.'
-},
-
-{
-q:'Ты сделал конкретное предложение. Клиент молчит. Твой следующий ход?',
-
-o:[
-'Продолжить длинно объяснять преимущества.',
-'Спросить, как клиенту такой вариант / устраивают ли условия.',
-'Сразу перейти к оформлению.',
-'Предложить скидку.'
-],
-
-a:1,
-
-e:'После предложения нужно получить реакцию клиента.'
-},
-
-{
-q:'Клиент: «Дорого». Лучший следующий ход?',
-
-o:[
-'«У нас и так самая низкая цена».',
-'«Могу сделать скидку 20%».',
-'«Подскажите, пожалуйста, что именно для вас не подходит по стоимости?»',
-'«Тогда обращайтесь в другую компанию».'
-],
-
-a:2,
-
-e:'Сначала выясняем содержание сомнения, а не защищаем цену.'
-},
-
-{
-q:'Клиент говорит: «Мне обязательно нужен этот вариант». Что помогает понять реальную потребность?',
-
-o:[
-'Спросить: «Почему он вам нужен и для чего вы его будете использовать?»',
-'Согласиться без уточнений.',
-'Сразу дать ещё более дорогой вариант.',
-'Сказать, что клиент ошибается.'
-],
-
-a:0,
-
-e:'Нужно выяснить причину требования.'
-},
-
-{
-q:'Клиент долго объяснял ситуацию. Какой ход помогает синхронизироваться?',
-
-o:[
-'Перебить и назвать цену.',
-'Кратко пересказать суть и спросить: «Правильно понимаю…?»',
-'Сказать «понятно» и перейти к продаже.',
-'Сменить тему.'
-],
-
-a:1,
-
-e:'Перефразирование и проверка понимания.'
-},
-
-{
-q:'Клиент: «Мне не срочно, главное — чтобы всё было правильно». Что делать с этой информацией?',
-
-o:[
-'Забыть её и предложить самый быстрый вариант.',
-'Использовать её как критерий при формировании предложения.',
-'Сказать, что срок не важен.',
-'Сразу завершить разговор.'
-],
-
-a:1,
-
-e:'Слова клиента становятся основанием следующего предложения.'
-},
-
-{
-q:'Есть два подходящих варианта. Как корректнее вести выбор?',
-
-o:[
-'Перечислить оба без объяснений.',
-'Самому решить за клиента.',
-'Сравнить ключевую разницу и спросить, какой вариант ему удобнее.',
-'Сказать: «Выбирайте сами».'
-],
-
-a:2,
-
-e:'Структурируй выбор и передай клиенту решение.'
-},
-
-{
-q:'Клиент: «Не знаю, какой выбрать». Что лучше спросить?',
-
-o:[
-'«Тогда я сам выберу».',
-'«Что для вас сейчас важнее: срок, стоимость или другой критерий?»',
-'«Почему вы вообще не знаете?»',
-'«Хорошо, подумайте».'
-],
-
-a:1,
-
-e:'Помоги клиенту сформулировать критерий выбора.'
-},
-
-{
-q:'Клиент: «Да, подходит». Что делать до перехода к следующей теме?',
-
-o:[
-'Сразу закончить разговор.',
-'Уточнить и зафиксировать, что именно согласовано.',
-'Ещё раз рассказать всё предложение.',
-'Предложить другую услугу.'
-],
-
-a:1,
-
-e:'Нужно превратить согласие в конкретную договорённость.'
-},
-
-{
-q:'После договорённости клиент должен приехать. Что дальше?',
-
-o:[
-'Ничего, пусть сам разберётся.',
-'Сразу начать новый продуктовый рассказ.',
-'Согласовать конкретный следующий шаг: когда, куда, что нужно сделать.',
-'Попросить клиента перезвонить когда-нибудь.'
-],
-
-a:2,
-
-e:'Решение должно перейти в конкретное действие.'
-},
-
-{
-q:'Клиент задаёт вопрос, который можно было предупредить заранее. Какой навык здесь нужен?',
-
-o:[
-'Предвосхищение вопросов и снятие неопределённости.',
-'Уход от ответа.',
-'Смена темы.',
-'Давление.'
-],
-
-a:0,
-
-e:'Хороший менеджер заранее снимает организационную неопределённость.'
-},
-
-{
-q:'Клиент: «Я подумаю». Что правильнее сделать?',
-
-o:[
-'«Хорошо, звоните».',
-'Выяснить, что именно клиент хочет обдумать.',
-'Сразу предложить скидку.',
-'Начать спорить.'
-],
-
-a:1,
-
-e:'«Подумаю» — не содержание сомнения. Нужно понять, что именно мешает решению.'
-},
-
-{
-q:'Клиент назвал свой критерий выбора. Позже ты предлагаешь решение. Как лучше построить реплику?',
-
-o:[
-'Опираясь на критерий, который назвал сам клиент.',
-'Не упоминать его критерий.',
-'Предложить случайный вариант.',
-'Сразу перейти к оплате.'
-],
-
-a:0,
-
-e:'Используй собственные слова и критерии клиента.'
-},
-
-{
-q:'После нового предложения клиент говорит: «Стало лучше, но мне всё ещё не подходит». Что делать?',
-
-o:[
-'Считать возражение закрытым.',
-'Уточнить, что именно всё ещё не подходит.',
-'Сделать любую скидку.',
-'Завершить звонок.'
-],
-
-a:1,
-
-e:'Нужно продолжить цикл выяснения и корректировки.'
-},
-
-{
-q:'Клиент выбрал вариант. Что является хорошим следующим ходом?',
-
-o:[
-'Сразу перейти к другой теме, не фиксируя решение.',
-'Подтвердить договорённость и определить следующее действие.',
-'Продолжать убеждать клиента.',
-'Предложить ещё пять вариантов.'
-],
-
-a:1,
-
-e:'После выбора фиксируется решение и следующий шаг.'
-},
-
-{
-q:'В каком случае можно переходить к следующему сомнению клиента?',
-
-o:[
-'Когда менеджер рассказал всё, что хотел.',
-'Когда клиент сказал «ну, наверное».',
-'Когда по текущему вопросу есть понятная договорённость.',
-'Когда прошло достаточно времени.'
-],
-
-a:2,
-
-e:'Незакрытый вопрос нельзя бросать только потому, что появился следующий.'
-},
-
-{
-q:'Клиент говорит: «Я сравню ещё предложения». Что делать?',
-
-o:[
-'Сразу запрещать сравнивать.',
-'Уточнить, по каким критериям клиент будет сравнивать, и продолжить работу с ними.',
-'Сразу дать максимальную скидку.',
-'Сказать: «Тогда до свидания».'
-],
-
-a:1,
-
-e:'Выясни критерии сравнения.'
-},
-
-{
-q:'Клиент объяснил цель. Тебе не хватает одной важной детали для выбора решения. Что делать?',
-
-o:[
-'Предположить её самому.',
-'Задать точный уточняющий вопрос.',
-'Назвать цену сразу.',
-'Перейти к следующему этапу.'
-],
-
-a:1,
-
-e:'Недостающую информацию нужно получить, а не додумывать.'
-},
-
-{
-q:'После объяснения клиент отвечает: «В целом нормально». Как проверить, есть ли твёрдое согласие?',
-
-o:[
-'Считать это согласием.',
-'Уточнить, устраивают ли клиента конкретные условия и можем ли переходить к оформлению.',
-'Предложить другую услугу.',
-'Закончить разговор.'
-],
-
-a:1,
-
-e:'«В целом нормально» не равно конкретной договорённости.'
-}
-
-];
-
-
-/* =========================
-   ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
-========================= */
-
-function shuffle(a){
-
-return a
-.slice()
-.sort(()=>Math.random()-0.5);
+  });
 
 }
 
 
-function saveAttempt(data){
+/* =====================================================
+   ЭКРАН ВХОДА
+===================================================== */
 
-localStorage.setItem(
-KEY,
-JSON.stringify(data)
-);
+function loginScreen(message=''){
+
+  app.innerHTML = `
+
+  <div class="card">
+
+    <div class="muted">
+      ДОСТУП МЕНЕДЖЕРА
+    </div>
+
+    <h1>
+      Тренажёр «Как вести клиента»
+    </h1>
+
+    <p>
+      Введите своё имя и персональный код доступа.
+    </p>
+
+    ${
+      message
+      ?
+      `<div class="bad">${message}</div>`
+      :
+      ''
+    }
+
+    <label>
+      <b>Имя менеджера</b>
+    </label>
+
+    <input
+      id="manager"
+      type="text"
+      placeholder="Например: Иван"
+      autocomplete="off"
+    >
+
+    <label>
+      <b>Код доступа</b>
+    </label>
+
+    <input
+      id="code"
+      type="password"
+      placeholder="Введите код"
+      autocomplete="off"
+    >
+
+    <button onclick="login()">
+      Войти
+    </button>
+
+  </div>
+
+  `;
+
+}
+
+
+async function login(){
+
+  const name =
+    document.getElementById('manager')
+      .value.trim();
+
+  const code =
+    document.getElementById('code')
+      .value.trim();
+
+  if(!name || !code){
+
+    loginScreen(
+      'Введите имя и код доступа.'
+    );
+
+    return;
+  }
+
+  app.innerHTML = `
+
+  <div class="card">
+
+    <h2>Проверяем доступ...</h2>
+
+    <p class="muted">
+      Подождите несколько секунд.
+    </p>
+
+  </div>
+
+  `;
+
+  try{
+
+    const result =
+      await api('login',{
+        name:name,
+        code:code
+      });
+
+    if(!result.ok){
+
+      loginScreen(
+        result.error ||
+        'Доступ не разрешён.'
+      );
+
+      return;
+    }
+
+    token = result.token;
+    managerName = result.name;
+
+    showIntro();
+
+  }catch(err){
+
+    loginScreen(
+      'Не удалось связаться с сервером. ' +
+      'Попробуйте ещё раз.'
+    );
+
+  }
 
 }
 
 
-function getAttempt(){
+/* =====================================================
+   ВВЕДЕНИЕ
+===================================================== */
 
-try{
+function showIntro(){
 
-return JSON.parse(
-localStorage.getItem(KEY)||'null'
-);
+  app.innerHTML = `
 
-}
+  <div class="card">
 
-catch(e){
+    <div class="muted">
+      МЕНЕДЖЕР: ${escapeHtml(managerName)}
+    </div>
 
-return null;
+    <h1>
+      Тренажёр «Как вести клиента»
+    </h1>
 
-}
+    <p>
+      Сначала внимательно посмотрите образцовый звонок.
+      Затем пройдите обучение.
+      После обучения будет зачёт.
+    </p>
 
-}
+    <div class="video">
 
+      <iframe
+        src="${VIDEO}"
+        title="Образцовый звонок"
+        allow="accelerometer; autoplay; clipboard-write;
+        encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
 
-/* =========================
-   ГЛАВНЫЙ ЭКРАН
-========================= */
+    </div>
 
-function intro(){
+    <div class="answer">
 
-const old=getAttempt();
+      <b>На что обращать внимание в звонке:</b>
 
-A.innerHTML=`
+      <ul>
+        <li>как менеджер выясняет ситуацию;</li>
+        <li>как задаёт уточняющие вопросы;</li>
+        <li>как использует слова клиента;</li>
+        <li>как получает реакцию;</li>
+        <li>как работает с новым сомнением;</li>
+        <li>как формирует следующее предложение;</li>
+        <li>как фиксирует договорённость.</li>
+      </ul>
 
-<div class="card">
+    </div>
 
-<div class="muted">
-САМОСТОЯТЕЛЬНАЯ РАБОТА
-</div>
+    <button onclick="startTraining()">
+      Я посмотрел. Начать обучение
+    </button>
 
-<h1>
-Тренажёр «Как вести клиента»
-</h1>
+  </div>
 
-<p>
-
-Сначала полностью прослушай образцовый звонок.
-
-Затем пройди обучение.
-
-В конце — <b>одноразовый зачёт</b>
-с новыми ситуациями.
-
-</p>
-
-
-<div class="video">
-
-<iframe
-src="https://www.youtube.com/embed/vqOBYOjIYr0"
-title="Образцовый звонок"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-allowfullscreen>
-</iframe>
-
-</div>
-
-
-<p class="muted">
-
-Прослушай звонок целиком,
-затем начинай обучение.
-
-</p>
-
-
-${
-old
-
-?
-
-`
-<div class="bad">
-
-<b>
-Зачёт уже проходился на этом устройстве.
-</b>
-
-<br><br>
-
-Повторный запуск из тренажёра отключён.
-
-</div>
-`
-
-:
-
-`
-<button onclick="start()">
-Начать обучение
-</button>
-`
+  `;
 
 }
 
-</div>
 
-
-<div class="card">
-
-<h2>
-Как проходит проверка
-</h2>
-
-
-<div class="grid">
-
-<div class="metric">
-
-<b>
-Обучение
-</b>
-
-<br>
-
-Можно ошибаться,
-смотреть эталоны
-и повторять упражнения.
-
-</div>
-
-
-<div class="metric">
-
-<b>
-Зачёт
-</b>
-
-<br>
-
-Новые ситуации,
-без эталонов
-и без подсказок.
-
-Одна попытка.
-
-</div>
-
-</div>
-
-
-<p>
-
-<b>Важно:</b>
-
-результат зачёта
-не является окончательной
-аттестацией.
-
-После него руководитель
-проверяет применение навыка
-в реальных звонках.
-
-</p>
-
-</div>
-
-`;
-
-}
-
-
-/* =========================
+/* =====================================================
    ОБУЧЕНИЕ
-========================= */
+===================================================== */
 
-function start(){
+const lessons = [
 
-lessonStep=0;
+  [
+    'Проверка понимания',
+    'Клиент: «Мне нужно оформить документы для подачи за границу». Сформулируй реплику, которая проверяет, правильно ли ты понял ситуацию.',
+    'Например: «Правильно понимаю, документы нужны для подачи за границу?»',
+    'Сначала синхронизируйся с клиентом и проверь исходные данные.'
+  ],
 
-showLesson();
+  [
+    'Получение реакции',
+    'Ты озвучил клиенту условия. Клиент молчит. Что скажешь?',
+    'Например: «Как вам такой вариант?» или «Что скажете по условиям?»',
+    'После предложения обязательно получи реакцию клиента.'
+  ],
+
+  [
+    'Уточнение сомнения',
+    'Клиент: «Что-то мне не подходит». Что спросишь?',
+    'Например: «Подскажите, пожалуйста, что именно вам не подходит?»',
+    'Расплывчатое сомнение нужно превратить в конкретную информацию.'
+  ],
+
+  [
+    'Поиск причины',
+    'Клиент требует определённый вариант. Выясни, зачем он ему нужен.',
+    'Например: «А подскажите, пожалуйста, для чего вам именно этот вариант?»',
+    'Первоначальное требование не всегда равно реальной потребности.'
+  ],
+
+  [
+    'Перефразирование',
+    'Клиент объяснил ситуацию длинно. Сформулируй короткое подтверждение понимания.',
+    'Например: «Правильно понимаю, что…?»',
+    'Перефразируй суть и проверь, правильно ли понял.'
+  ],
+
+  [
+    'Использование слов клиента',
+    'Клиент: «Мне не срочно, главное — чтобы всё было правильно». Предложи решение на основе этого.',
+    'Например: «Тогда можем предложить вариант с более длительным сроком, но без спешки. Такой вариант вам подходит?»',
+    'Информация клиента должна влиять на следующее предложение.'
+  ],
+
+  [
+    'Альтернатива и выбор',
+    'Есть вариант А — быстрее и дороже; вариант Б — дешевле и дольше. Как предложишь выбор?',
+    'Например: «Есть два варианта: быстрее за X или дешевле за Y. Какой вам удобнее?»',
+    'Не бросай клиента с вариантами; структурируй выбор.'
+  ],
+
+  [
+    'Помощь в выборе',
+    'Клиент: «Я не знаю, какой выбрать». Что делаешь?',
+    'Например: «А что для вас сейчас важнее — срок или стоимость?»',
+    'Помоги клиенту определить критерий выбора.'
+  ],
+
+  [
+    'Фиксация договорённости',
+    'Клиент: «Да, этот вариант мне подходит». Что делаешь дальше?',
+    'Например: «Правильно понимаю, что оформляем по этим условиям?»',
+    'Согласие нужно превратить в конкретную договорённость.'
+  ],
+
+  [
+    'Следующий шаг',
+    'Договорённость достигнута. Что спрашиваешь дальше?',
+    'Например: «Когда вам будет удобно подъехать?»',
+    'После решения должен появиться конкретный следующий шаг.'
+  ],
+
+  [
+    'Предупреждение вопросов',
+    'Клиент согласился приехать. Какие вещи стоит сообщить заранее?',
+    'Например: куда подойти, что взять с собой, что произойдёт после приезда.',
+    'Менеджер заранее снимает неопределённость.'
+  ]
+
+];
+
+let lessonIndex = 0;
+
+
+function startTraining(){
+
+  lessonIndex = 0;
+
+  showLesson();
 
 }
 
 
 function showLesson(){
 
-if(
-lessonStep>=lessons.length
-){
+  if(lessonIndex >= lessons.length){
 
-startExamIntro();
+    examIntro();
 
-return;
+    return;
+  }
 
-}
+  const x = lessons[lessonIndex];
 
+  const percent =
+    Math.round(
+      lessonIndex /
+      lessons.length * 100
+    );
 
-const x=lessons[lessonStep];
+  app.innerHTML = `
 
+  <div class="card">
 
-A.innerHTML=`
+    <div class="muted">
+      ОБУЧЕНИЕ · ШАГ
+      ${lessonIndex+1}
+      ИЗ
+      ${lessons.length}
+    </div>
 
-<div class="card">
+    <div class="progress">
+      <div style="width:${percent}%"></div>
+    </div>
 
-<div class="muted">
+    <h2 style="margin-top:18px">
+      ${escapeHtml(x[0])}
+    </h2>
 
-ОБУЧЕНИЕ · ШАГ
-${lessonStep+1}
-ИЗ
-${lessons.length}
+    <p>
+      <b>Задание:</b>
+      ${escapeHtml(x[1])}
+    </p>
 
-</div>
+    <textarea
+      id="lessonAnswer"
+      placeholder="Напиши свою реплику менеджера..."
+    ></textarea>
 
+    <button onclick="checkLesson()">
+      Проверить себя
+    </button>
 
-<div class="progress">
+    <div id="lessonFeedback"></div>
 
-<div
-style="
-width:${Math.round(
-(lessonStep/lessons.length)*100
-)}%"
-></div>
+  </div>
 
-</div>
-
-
-<h2
-style="margin-top:18px"
->
-
-${x[0]}
-
-</h2>
-
-
-<p>
-
-<b>
-Задание:
-</b>
-
-${x[1]}
-
-</p>
-
-
-<textarea
-id="a"
-placeholder="Напиши свою реплику менеджера..."
->
-</textarea>
-
-
-<br>
-
-
-<button
-onclick="showLessonAnswer()"
->
-
-Проверить себя
-
-</button>
-
-
-<div id="f"></div>
-
-</div>
-
-`;
+  `;
 
 }
 
 
-function showLessonAnswer(){
+function checkLesson(){
 
-const a=
-document
-.getElementById('a')
-.value
-.trim();
+  const field =
+    document.getElementById(
+      'lessonAnswer'
+    );
 
+  const answer =
+    field.value.trim();
 
-if(
-a.length<8
-){
+  if(answer.length < 8){
 
-document
-.getElementById('f')
-.innerHTML=
+    document.getElementById(
+      'lessonFeedback'
+    ).innerHTML = `
 
-`
-<div class="bad">
+      <div class="bad">
 
-Сформулируй полноценный
-ход менеджера.
+        Напиши полноценную реплику.
+        В обучении можно пробовать снова.
 
-В обучении можно пробовать снова.
+      </div>
 
-</div>
-`;
+    `;
 
-return;
+    return;
+  }
 
-}
+  const x = lessons[lessonIndex];
 
+  document.getElementById(
+    'lessonFeedback'
+  ).innerHTML = `
 
-const x=lessons[lessonStep];
+    <div class="answer">
 
+      <b>Принцип:</b><br>
+      ${escapeHtml(x[3])}
 
-document
-.getElementById('f')
-.innerHTML=
+      <br><br>
 
-`
+      <b>Один из вариантов:</b><br>
+      ${escapeHtml(x[2])}
 
-<div class="answer">
+      <br><br>
 
-<b>
-Принцип:
-</b>
+      <span class="muted">
+        Не нужно заучивать эту фразу.
+        Важно уметь сделать такой же
+        коммуникативный ход своими словами.
+      </span>
 
-<br>
+    </div>
 
-${x[3]}
+    <button onclick="nextLesson()">
+      Следующий навык
+    </button>
 
-<br><br>
-
-
-<b>
-Один из вариантов:
-</b>
-
-<br>
-
-${x[2]}
-
-<br><br>
-
-
-<span class="muted">
-
-Не заучивай эту фразу.
-
-Важно уметь сделать
-такой же коммуникативный ход
-своими словами.
-
-</span>
-
-</div>
-
-
-<button
-onclick="lessonStep++;showLesson()"
->
-
-Следующий навык
-
-</button>
-
-`;
+  `;
 
 }
 
 
-/* =========================
+function nextLesson(){
+
+  lessonIndex++;
+
+  showLesson();
+
+}
+
+
+/* =====================================================
    НАЧАЛО ЗАЧЁТА
-========================= */
+===================================================== */
 
-function startExamIntro(){
+function examIntro(){
 
-A.innerHTML=`
+  app.innerHTML = `
 
-<div class="card">
+  <div class="card">
 
-<div class="muted">
-ЗАЧЁТ
-</div>
+    <div class="muted">
+      ЗАЧЁТ
+    </div>
 
+    <h1>
+      Проверка применения
+    </h1>
 
-<h1>
-Проверка применения
-</h1>
+    <p>
+      Теперь будут новые ситуации.
+      Здесь не будет названий приёмов
+      и эталонных ответов.
+    </p>
 
+    <div class="grid">
 
-<p>
+      <div class="metric">
+        <b>12 вопросов</b><br>
+        Из банка сервер случайно выберет 12 ситуаций.
+      </div>
 
-Теперь будут новые ситуации.
+      <div class="metric">
+        <b>10 правильных</b><br>
+        Для сдачи нужно минимум 10 из 12.
+      </div>
 
-Здесь нет названий приёмов
-и эталонных ответов.
+    </div>
 
-</p>
+    <div class="bad">
 
+      <b>Важно.</b><br><br>
 
-<ul>
+      Это одна попытка.
+      После отправки изменить ответы
+      или пройти зачёт заново нельзя.
 
-<li>
-18 возможных ситуаций.
-Из них случайно выбираются 12.
-</li>
+    </div>
 
-<li>
-В каждом вопросе один лучший
-следующий ход.
-</li>
+    <p>
+      Не угадывай по отдельным словам.
+      Представь реальный разговор:
+      какой следующий ход действительно
+      двигает клиента дальше?
+    </p>
 
-<li>
-Для сдачи нужно минимум
-10 правильных ответов из 12.
-</li>
+    <button onclick="loadExam()">
+      Начать зачёт
+    </button>
 
-<li>
-После ответа правильный вариант
-не показывается.
-</li>
+  </div>
 
-<li>
-После завершения повторной кнопки
-«Пройти заново» нет.
-</li>
-
-</ul>
-
-
-<p>
-
-<b>
-Не угадывай по словам.
-</b>
-
-Представь реальный звонок:
-
-какой ход действительно
-двигает клиента дальше?
-
-</p>
-
-
-<button
-onclick="beginExam()"
->
-
-Начать зачёт
-
-</button>
-
-</div>
-
-`;
+  `;
 
 }
 
 
-/* =========================
-   ЗАЧЁТ
-========================= */
+/* =====================================================
+   ЗАГРУЗКА ЗАЧЁТА С СЕРВЕРА
+===================================================== */
 
-function beginExam(){
+async function loadExam(){
 
-const old=getAttempt();
+  app.innerHTML = `
 
+  <div class="card">
 
-if(old){
+    <h2>
+      Загружаем зачёт...
+    </h2>
 
-showResult(old);
+    <p class="muted">
+      Формируем индивидуальный вариант.
+    </p>
 
-return;
+  </div>
 
-}
+  `;
 
+  try{
 
-const qs=
-shuffle(examPool)
-.slice(0,12);
+    const result =
+      await api('getTest',{
+        token:token
+      });
 
+    if(!result.ok){
 
-examState={
+      showError(
+        result.error ||
+        'Не удалось получить зачёт.'
+      );
 
-questions:qs,
+      return;
+    }
 
-index:0,
+    questions =
+      result.questions || [];
 
-correct:0,
+    examAnswers = [];
 
-answers:[]
+    examIndex = 0;
 
-};
+    if(!questions.length){
 
+      showError(
+        'Сервер не передал вопросы.'
+      );
 
-renderExamQuestion();
+      return;
+    }
 
-}
+    showExamQuestion();
 
+  }catch(err){
 
-function renderExamQuestion(){
+    showError(
+      'Не удалось получить зачёт. ' +
+      'Проверьте соединение и попробуйте обновить страницу.'
+    );
 
-const s=examState;
-
-const q=s.questions[s.index];
-
-
-A.innerHTML=`
-
-<div class="card">
-
-<div class="muted">
-
-ЗАЧЁТ · ВОПРОС
-${s.index+1}
-ИЗ
-${s.questions.length}
-
-</div>
-
-
-<div class="progress">
-
-<div
-style="
-width:${Math.round(
-(s.index/s.questions.length)*100
-)}%"
-></div>
-
-</div>
-
-
-<h2
-style="margin-top:18px"
->
-
-Какой следующий ход
-менеджера?
-
-</h2>
-
-
-<div class="quote">
-
-${q.q}
-
-</div>
-
-
-${
-
-q.o.map(
-
-(x,i)=>`
-
-<label class="option">
-
-<input
-type="radio"
-name="ans"
-value="${i}"
->
-
-${x}
-
-</label>
-
-`
-
-).join('')
+  }
 
 }
 
 
-<button
-onclick="examAnswer()"
->
+/* =====================================================
+   ВОПРОС ЗАЧЁТА
+===================================================== */
 
-Ответить
+function showExamQuestion(){
 
-</button>
+  const q =
+    questions[examIndex];
 
+  const percent =
+    Math.round(
+      examIndex /
+      questions.length * 100
+    );
 
-</div>
+  app.innerHTML = `
 
-`;
+  <div class="card">
+
+    <div class="muted">
+
+      ЗАЧЁТ · ВОПРОС
+      ${examIndex+1}
+      ИЗ
+      ${questions.length}
+
+    </div>
+
+    <div class="progress">
+
+      <div style="width:${percent}%"></div>
+
+    </div>
+
+    <h2 style="margin-top:18px">
+
+      Какой следующий ход
+      менеджера?
+
+    </h2>
+
+    <div class="quote">
+
+      ${escapeHtml(q.q)}
+
+    </div>
+
+    <div id="options">
+
+      ${
+        q.options.map((option,index)=>`
+
+          <label class="option">
+
+            <input
+              type="radio"
+              name="examAnswer"
+              value="${index}"
+            >
+
+            ${escapeHtml(option)}
+
+          </label>
+
+        `).join('')
+      }
+
+    </div>
+
+    <button onclick="nextExamQuestion()">
+
+      ${
+        examIndex === questions.length-1
+        ?
+        'Завершить зачёт'
+        :
+        'Ответить'
+      }
+
+    </button>
+
+  </div>
+
+  `;
 
 }
 
 
-function examAnswer(){
+function nextExamQuestion(){
 
-const r=
-document
-.querySelector(
-'input[name="ans"]:checked'
-);
+  const selected =
+    document.querySelector(
+      'input[name="examAnswer"]:checked'
+    );
 
+  if(!selected){
 
-if(!r){
+    alert(
+      'Выбери один вариант ответа.'
+    );
 
-alert(
-'Выбери один вариант.'
-);
+    return;
+  }
 
-return;
+  examAnswers.push({
 
-}
+    id:questions[examIndex].id,
 
+    answer:Number(
+      selected.value
+    )
 
-const q=
-examState.questions[
-examState.index
-];
+  });
 
+  examIndex++;
 
-const ok=
-Number(r.value)===q.a;
+  if(examIndex < questions.length){
 
+    showExamQuestion();
 
-if(ok){
+  }else{
 
-examState.correct++;
+    submitExam();
 
-}
-
-
-examState.answers.push({
-
-question:q.q,
-
-chosen:Number(r.value),
-
-ok:ok
-
-});
-
-
-examState.index++;
-
-
-if(
-examState.index<
-examState.questions.length
-){
-
-renderExamQuestion();
-
-}
-
-else{
-
-finishExam();
-
-}
+  }
 
 }
 
 
-/* =========================
+/* =====================================================
+   ОТПРАВКА ЗАЧЁТА
+===================================================== */
+
+async function submitExam(){
+
+  app.innerHTML = `
+
+  <div class="card">
+
+    <h2>
+      Проверяем зачёт...
+    </h2>
+
+    <p class="muted">
+      Результат рассчитывается сервером.
+    </p>
+
+  </div>
+
+  `;
+
+  try{
+
+    const result =
+      await api('submit',{
+
+        token:token,
+
+        answers:JSON.stringify(
+          examAnswers
+        )
+
+      });
+
+    if(!result.ok){
+
+      showError(
+        result.error ||
+        'Не удалось отправить результат.'
+      );
+
+      return;
+    }
+
+    showResult(result);
+
+  }catch(err){
+
+    showError(
+      'Не удалось отправить результат. ' +
+      'Не закрывайте страницу и попробуйте ещё раз.'
+    );
+
+  }
+
+}
+
+
+/* =====================================================
    РЕЗУЛЬТАТ
-========================= */
+===================================================== */
 
-function finishExam(){
+function showResult(result){
 
-const pass=
-examState.correct>=10;
+  app.innerHTML = `
 
+  <div class="card">
 
-const data={
+    <div class="muted">
+      РЕЗУЛЬТАТ ЗАЧЁТА
+    </div>
 
-date:
-new Date()
-.toLocaleString('ru-UA'),
+    <div class="score">
+      ${result.score}/${result.total}
+    </div>
 
-score:
-examState.correct,
+    <h1>
 
-total:
-examState.questions.length,
+      ${
+        result.passed
+        ?
+        'Зачёт сдан'
+        :
+        'Зачёт не сдан'
+      }
 
-passed:
-pass
+    </h1>
 
-};
+    <div class="${
+      result.passed
+      ?
+      'ok'
+      :
+      'bad'
+    }">
 
+      <b>
 
-saveAttempt(data);
+        ${
+          result.passed
+          ?
+          'Результат записан. Учебный модуль пройден.'
+          :
+          'Результат записан. Навык пока недостаточно устойчив.'
+        }
 
+      </b>
 
-showResult(data);
+      <br><br>
+
+      Результат:
+      <b>${result.percent}%</b>
+
+    </div>
+
+    <h3>
+      Что дальше
+    </h3>
+
+    ${
+      result.passed
+
+      ?
+
+      `
+      <p>
+        Сделайте скриншот этого экрана
+        и отправьте руководителю.
+      </p>
+
+      <p>
+        Далее руководитель проверяет
+        применение технологии
+        в реальных звонках.
+      </p>
+      `
+
+      :
+
+      `
+      <p>
+        Вернитесь к обучающим материалам
+        и отработайте навыки.
+      </p>
+
+      <p>
+        Повторный допуск к зачёту
+        выдаёт руководитель.
+      </p>
+      `
+
+    }
+
+    <div class="answer">
+
+      <b>
+        Важно:
+      </b>
+
+      <br><br>
+
+      Этот экран нельзя использовать
+      для повторной сдачи.
+
+      Результат уже сохранён
+      на сервере.
+
+    </div>
+
+  </div>
+
+  `;
 
 }
 
 
-function showResult(data){
+/* =====================================================
+   ОШИБКА
+===================================================== */
 
-A.innerHTML=`
+function showError(message){
 
-<div class="card">
+  app.innerHTML = `
 
-<div class="muted">
-РЕЗУЛЬТАТ ЗАЧЁТА
-</div>
+  <div class="card">
 
+    <div class="bad">
 
-<div class="score">
+      <b>Не удалось продолжить</b>
 
-${data.score}/${data.total}
+      <br><br>
 
-</div>
+      ${escapeHtml(message)}
 
+    </div>
 
-<h1>
+    <button
+      class="secondary"
+      onclick="location.reload()"
+    >
+      Обновить страницу
+    </button>
 
-${
+  </div>
 
-data.passed
-
-?
-
-'Зачёт сдан'
-
-:
-
-'Зачёт не сдан'
-
-}
-
-</h1>
-
-
-<p>
-
-${data.date}
-
-</p>
-
-
-<div
-class="${
-data.passed
-?
-'ok'
-:
-'bad'
-}"
->
-
-
-<b>
-
-${
-data.passed
-
-?
-
-'Результат засчитан как прохождение учебного модуля.'
-
-:
-
-'Результат показывает, что навык пока недостаточно устойчив.'
-
-}
-
-</b>
-
-
-<br><br>
-
-
-Самостоятельный тест
-не является финальной аттестацией.
-
-Окончательная проверка —
-реальные звонки.
-
-</div>
-
-
-${
-data.passed
-
-?
-
-`
-
-<h3>
-Следующий этап
-</h3>
-
-<p>
-
-Сделай скриншот этого экрана
-и отправь руководителю.
-
-После этого руководитель
-слушает реальные звонки
-и проверяет применение технологии.
-
-</p>
-
-`
-
-:
-
-`
-
-<h3>
-Что дальше
-</h3>
-
-<p>
-
-В тренажёре нет кнопки
-повторного зачёта.
-
-Вернись к обучающим материалам
-и отработай навыки.
-
-Новый допуск к зачёту
-выдаёт руководитель.
-
-</p>
-
-`
+  `;
 
 }
 
 
-<p class="small">
+/* =====================================================
+   ЭКРАНИРОВАНИЕ ТЕКСТА
+===================================================== */
 
-Проверяемые навыки:
+function escapeHtml(value){
 
-понимание ситуации,
-
-уточнение,
-
-перефразирование,
-
-углубление,
-
-использование слов клиента,
-
-предложение решения,
-
-получение реакции,
-
-работа с сомнением,
-
-выбор,
-
-фиксация договорённости
-
-и следующий шаг.
-
-</p>
-
-
-</div>
-
-`;
+  return String(value)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
 
 }
 
 
-/* =========================
+/* =====================================================
    ЗАПУСК
-========================= */
+===================================================== */
 
-intro();
+loginScreen();
 
 </script>
 
